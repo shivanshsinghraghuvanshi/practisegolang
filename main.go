@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	. "github.com/shivanshsinghraghuvanshi/practisegolang/amazon/linkedlist"
 )
 
@@ -18,31 +17,39 @@ func main() {
 	//IntToRoman(3)
 	//RomanToInt("III")
 	// ThreeSum([]int{-1, 0, 1, 2, -1, -4})
-	//l1 := new(ListNode)
-	//l1.Val = 1
-	//l1.Next = &ListNode{
-	//	Val: 2,
-	//	Next: &ListNode{
-	//		Val:  4,
-	//		Next: nil,
-	//	},
-	//}
-	//l2 := new(ListNode)
-	//l2.Val = 1
-	//l2.Next = &ListNode{
-	//	Val: 3,
-	//	Next: &ListNode{
-	//		Val:  4,
-	//		Next: nil,
-	//	},
-	//}
+	l1 := new(ListNode)
+	l1.Val = 1
+	l1.Next = &ListNode{
+		Val: 4,
+		Next: &ListNode{
+			Val:  5,
+			Next: nil,
+		},
+	}
+	l2 := new(ListNode)
+	l2.Val = 1
+	l2.Next = &ListNode{
+		Val: 3,
+		Next: &ListNode{
+			Val:  4,
+			Next: nil,
+		},
+	}
+
+	l3 := new(ListNode)
+	l3.Val = 2
+	l3.Next = &ListNode{
+		Val:  6,
+		Next: nil,
+	}
+	KmergeKLists([]*ListNode{l1, l2, l3})
 	//MergeTwoLists(l1, l2)
 
-	l := NewMyLinkedList()
-	l.Add(10)
-	l.Add(20)
-	l.Add(9)
-	l.Add(11)
+	//l := NewMyLinkedList()
+	//l.Add(10)
+	//l.Add(20)
+	//l.Add(9)
+	//l.Add(11)
 	// l.Print()
 	//l.PrintOnlyValues()
 	//fmt.Printf("\n %d", l.Length())
@@ -54,16 +61,18 @@ func main() {
 	//found,node := l.FindNode(3)
 	//fmt.Printf("%t \t %v",found,node)
 
-	i, node := l.Middle()
-	fmt.Printf("%d \t %v \n", i, node)
-	l.PrintOnlyValues()
-	fmt.Printf("\n")
-	_, _ = l.InsertAt(1, 18)
-	l.PrintOnlyValues()
-	fmt.Printf("\n")
-	_, _ = l.DeleteAt(1)
-	l.PrintOnlyValues()
-	fmt.Printf("\n")
+	//i, node := l.Middle()
+	//fmt.Printf("%d \t %v \n", i, node)
+	//l.PrintOnlyValues()
+	//fmt.Printf("\n")
+	//_, _ = l.InsertAt(1, 18)
+	//l.PrintOnlyValues()
+	//fmt.Printf("\n")
+	//_, _ = l.DeleteAt(1)
+	//l.PrintOnlyValues()
+	//fmt.Printf("\n")
+	//l.Reverse()
+	//l.PrintOnlyValues()
 }
 
 // reverse a string

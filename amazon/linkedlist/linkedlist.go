@@ -13,7 +13,7 @@ type myNode struct {
 
 type myLinkedList struct {
 	head *myNode
-	tail *myNode
+	// tail *myNode
 	// length int
 }
 
@@ -149,4 +149,63 @@ func (l *myLinkedList) DeleteAt(pos int) (bool, int) {
 		}
 	}
 	return false, l.Length()
+}
+
+func (l *myLinkedList) Reverse() {
+	node := l.head
+	var prev *myNode
+
+	for node != nil {
+		node, prev, node.next = node.next, node, prev
+	}
+	// if you have to return a node return prev pointer
+	//return prev
+	l.head = prev
+}
+
+func Reverse(head *myNode) *myNode {
+	node := head
+	var prev *myNode
+	for node != nil {
+		node, prev, node.next = node.next, node, prev
+	}
+	return prev
+}
+
+func (l *myLinkedList) Sort() {
+	node := l.head
+	l.head = mergeSort(node, l.Length())
+}
+
+func mergeSort(l *myNode, length int) *myNode {
+	return split(l, 0, length)
+}
+
+func split(l *myNode, start, end int) *myNode {
+	if end-start < 2 {
+		return l
+	}
+	// call the left recursion
+	// call the right recursion
+	var l1, l2 *myNode
+	// call the left recursion for l1
+	// TODO
+	// call the right recursion l2
+	// TODO
+	return merge(l1, l2)
+}
+
+func merge(l1, l2 *myNode) *myNode {
+	if l1 == nil {
+		return l2
+	} else if l2 == nil {
+		return l1
+	} else if l1.val < l2.val {
+		l1.next = merge(l1.next, l2)
+		return l1
+	} else {
+		l2.next = merge(l1, l2.next)
+		return l2
+	}
+
 }
