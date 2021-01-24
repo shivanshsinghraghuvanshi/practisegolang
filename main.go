@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	. "github.com/shivanshsinghraghuvanshi/practisegolang/amazon/linkedlist"
-	. "github.com/shivanshsinghraghuvanshi/practisegolang/amazon/treesAndgraphs"
+	"sort"
 )
 
 func middleNode(head *ListNode) *ListNode {
@@ -138,27 +138,111 @@ func pairwiseSwap(head *ListNode) *ListNode {
 
 // reverse a string
 
+//func main() {
+//	// BST Tester
+//
+//	b := NewBST()
+//	b.Insert(25)
+//	b.Insert(20)
+//	b.Insert(15)
+//	b.Insert(27)
+//	b.Insert(30)
+//	b.Insert(29)
+//	b.Insert(26)
+//	b.Insert(22)
+//	b.Insert(32)
+//	fmt.Println("end of programme")
+//
+//	b.InOrderTraversal()
+//
+//	//x :=b.Get(20)
+//
+//	fmt.Println(IsValidBST(b.Root))
+//
+//	//fmt.Printf(" Minimum value of this BST is %d \n",b.GetMin())
+//	//fmt.Printf(" Maximum value of this BST is %d \n",b.GetMax())
+//
+//
+//}
+
 func main() {
-	// BST Tester
 
-	b := NewBST()
-	b.Insert(25)
-	b.Insert(20)
-	b.Insert(15)
-	b.Insert(27)
-	b.Insert(30)
-	b.Insert(29)
-	b.Insert(26)
-	b.Insert(22)
-	b.Insert(32)
-	fmt.Println("end of programme")
+	h:= newHash(5)
+	h.Add("Shirt")
+	h.Add("Trouser")
+	fmt.Println(h.GetAll())
+	h.Delete("Shirt")
+	fmt.Println(h.GetAll())
+}
 
-	b.InOrderTraversal()
+// arr[3,7,5,6,2]
+func subsetA(arr []int) []int {
 
-	//x :=b.Get(20)
+	sort.Ints(arr)
+	var sumL int
+	sumL = 0
+	//i := len(arr) - 1
+	for i := len(arr) - 1; i >= 0; i-- {
+		sumL = sumL + arr[i]
+		if sumL > sumRemaining(arr[:i]) {
+			return arr[i+1:]
+		}
+	}
 
-	fmt.Println(IsValidBST(b.Root))
+	return []int{}
+}
 
-	//fmt.Printf(" Minimum value of this BST is %d \n",b.GetMin())
-	//fmt.Printf(" Maximum value of this BST is %d \n",b.GetMax())
+func sumRemaining(rem []int) int {
+	var sum int
+	sum = 0
+	for _, n := range rem {
+		sum += n
+	}
+	return sum
+}
+
+type hash struct {
+	d []string
+	l int
+	c int
+}
+
+func newHash(c int) *hash {
+	return &hash{d: make([]string,c), l: 0, c: c}
+}
+
+
+
+func (h *hash) Add(name string) {
+	f, _ := found(h.d, name)
+	if h.l < h.c && !f {
+		h.d[h.l] = name
+		h.l += 1
+	}
+}
+
+func (h *hash) GetAll() []string {
+	return h.d
+}
+
+func (h *hash) Delete(s string) {
+
+	f, i := found(h.d, s)
+	if h.l < h.c && f {
+		remove(h.d, i)
+		h.l -= 1
+	}
+}
+
+func remove(slice []string, s int) []string {
+	return append(slice[:s], slice[s+1:]...)
+}
+
+func found(a []string, s string) (bool, int) {
+	for i, x := range a {
+		if x == s {
+			return true, i
+		}
+	}
+	return false, -1
 }
